@@ -1,23 +1,37 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, AppRegistry, Image, TextInput } from 'react-native';
 
-export default class App extends Component {
+class Greeting extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Hi Jonathan!</Text>
-        <Text>Lets Start a new Project!</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+      <Text>Hello {this.props.name}!</Text>
+    );
+  }
+}
+
+
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {text: ''};
+  }
+  render() {
+    let pic  = {
+      uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+    };
+    return (
+      <View style={{flex: 1}}>
+        <Text style={{flex: 1,padding: 20,backgroundColor: 'powderblue', textAlignVertical: 'bottom'}}>
+          Paragraph Template Here
+        </Text>
+        <TextInput
+          style={{padding: 20, flex: 2, height: 40,textAlignVertical: 'top'}}
+          multiline={true}
+          placeholder="Type here!"
+          onChangeText={(text) => this.setState({text})}/>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+AppRegistry.registerComponent('AwesomeProject',() => App)
